@@ -9,22 +9,22 @@
   <body class="bg-[url('../assets/pokertable.jpg')] bg-contain">
     <main class="flex flex-col h-screen justify-items-start items-center pt-30">
       <h1
-        class="font-bangers text-white font-bold text-center text-4xl md:text-6xl m-6 tracking-wider"
+        class="text-white font-bold text-center text-4xl md:text-6xl m-2 tracking-wider"
       >
         Guess a number between 1 and 100!
       </h1>
       <section class="input_section">
-        <p class="text-center text-xl text-white font-bold p-5">
-          How often do you think you can guess a number?
+        <p class="text-center text-xl text-white font-bold p-5 tracking-widest">
+          How often do you to guess the correct number?
         </p>
         <div class="grid grid-cols-2 text-left">
           <div>
             <div class="guess_radio_formatter">
-              <input type="radio" id="four" name="guesses" value="4" />
+              <input type="radio" id="four" name="guesses" value="4" checked />
               <label for="four" class="guess_label">4</label><br />
             </div>
             <div class="guess_radio_formatter">
-              <input type="radio" id="six" name="guesses" value="6" />
+              <input type="radio" id="six" name="guesses" value="6" disabled />
               <label for="six" class="guess_label">6</label>
             </div>
           </div>
@@ -45,13 +45,29 @@
         </div>
       </section>
       <section class="input_section">
-        <form action="submit">
-          <div>
-            <input type="text" class="w-20 bg-amber-200" />
+        <div class="flex flex-col justify-center">
+          <div class="flex flex-col justify-center items-center">
+            <label
+              for="number_input"
+              class="text-yellow-500 font-black text-2xl md:text-4xl lg:text-6xl text-right pb-4"
+              >Your number!</label
+            >
+            <input
+              name="number"
+              id="number_input"
+              type="text"
+              class="min-w-48 p-2 text-red-600 font-black text-4xl text-center bg-amber-200 rounded-lg tracking-widest"
+            />
           </div>
-          <button>Guess!</button>
-        </form>
+          <button
+            id="guessButton"
+            class="bg-pink-400 mx-12 my-2 p-2 text-4xl text-yellow-200 rounded-xl hover:bg-pink-600 hover:text-yellow-400 active:scale-89"
+          >
+            Guess!
+          </button>
+        </div>
       </section>
     </main>
+    <script src="./src/main.ts"></script>
   </body>
 </html>

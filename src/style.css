@@ -6,12 +6,16 @@
 }
 
 @layer components {
+  body {
+    @apply font-bangers;
+  }
+
   .input_section {
-    @apply mt-12 p-6 flex flex-col justify-center items-center bg-rose-700 min-w-120 w-[30%] rounded-xl border-2 border-amber-400;
+    @apply mt-6 p-2 flex flex-col justify-center items-center bg-rose-700 min-w-120 w-[30%] rounded-xl border-2 border-amber-400;
   }
 
   .guess_label {
-    @apply font-bold text-6xl ms-6 font-bangers text-green-900;
+    @apply font-bold text-4xl ms-6  text-green-900;
   }
   .guess_radio_formatter {
     @apply flex flex-row justify-start  items-center mt-4 mb-8;
