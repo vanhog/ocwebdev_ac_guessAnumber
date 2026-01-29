@@ -1,19 +1,16 @@
 let inputField = document.getElementById('number_input') as HTMLInputElement;
 let guessButton = document.getElementById('guessButton');
 
-let gameRuns: number = 0;
+let radios = document.getElementById('radios');
 
-function getValidGuess(): number {
-  let guess: number = NaN;
-  do {
-    guess = Number(inputField.value);
-    if (isNaN(guess) || guess > 100 || guess < 1) {
-      window.alert('To win, please, input a number between 1 and 100.');
-      inputField.value = ' ';
-    }
-  } while (isNaN(guess));
-  return guess;
-}
+let gameRuns: number = getNumGuesses();
+let runsDone: number = 1;
+let vicNum: number = NaN;
+let inGame: boolean = false;
+
+radios?.addEventListener('change', () => {
+  gameRuns = getNumGuesses();
+});
 
 function getNumGuesses(): number {
   const checkedRadio = document.querySelector<HTMLInputElement>(
@@ -34,28 +31,76 @@ function getNumGuesses(): number {
   return attempts;
 }
 
-guessButton?.addEventListener('click', function () {
-  if (!(gameRuns > 0)) {
-    gameRuns = getNumGuesses();
+function checkValidityGuess(): boolean {
+  guess = Number(inputField.value);
+  if (isNaN(guess) || guess > 100 || guess < 1) {
+    return false;
+  } else {
+    return true;
   }
+}
 
-  // disable radio buttons to avoid distraction
+function toggleRadioStates() {
   const radios = document.querySelectorAll<HTMLInputElement>(
     'input[name="guesses"]',
   );
-  radios.forEach((radio) => (radio.disabled = true));
+  radios.forEach((radio) => (radio.disabled = !radio.disabled));
+  // -
+}
 
-  for (let i = 1; i <= gameRuns; i++) {
-    let guess = getValidGuess();
-    if (guess === 5) {
+guessButton?.addEventListener('click', function () {
+  if (!inGame) {
+    toggleRadioStates();
+
+    vicNum = Math.floor(Math.random() * 100 + 1);
+    console.log(vicNum);
+    inGame = true;
+  }
+
+  if (checkValidityGuess()) {
+    if (Number(inputField.value) === vicNum) {
       window.alert('You won!');
       inputField.value = '';
-      break;
+      runsDone = 1;
+      inGame = false;
+      toggleRadioStates();
     } else {
-      guess = getValidGuess();
+      if (runsDone >= gameRuns) {
+        window.alert('Game over! You lost!');
+        runsDone = 1;
+        inGame = false;
+        inputField.value = String(vicNum);
+        toggleRadioStates();
+      } else {
+        window.alert('You are wrong!');
+        inputField.value = '';
+        runsDone += 1;
+      }
     }
-    console.log(i, gameRuns, guess, inputField.value);
+  } else {
+    inputField.value = '';
+    window.alert('Please, enter a number between 1 and 100.');
   }
-  radios.forEach((radio) => (radio.disabled = false));
-  gameRuns = 0;
+
+  // if (checkValidityGuess()) {
+  //   if (Number(inputField.value) === vicNum) {
+  //     window.alert('You won!');
+  //     runsDone = 1;
+  //     vicNum = NaN;
+  //     // enable radio buttons again
+  //     radios.forEach((radio) => (radio.disabled = false));
+  //   } else {
+  //     if (runsDone < gameRuns) {
+  //       window.alert("Nope! You're wrong!");
+  //       runsDone += 1;
+  //       inputField.value = '';
+  //     } else {
+  //       window.alert('You lost! Game over!');
+  //       // enable radio buttons again
+  //       radios.forEach((radio) => (radio.disabled = false));
+  //       runsDone = 1;
+  //       vicNum = NaN;
+  //     }
+  //   }
+  // }
 });
