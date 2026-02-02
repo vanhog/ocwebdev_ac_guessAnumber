@@ -13,6 +13,7 @@ This is a solution to the [OpenCampus WebDev Program 2025's ](https://edu.openca
 - [Author](#author)
 
 ## Task
+
 - Design a game in which players have to guess a number between 1 and 100.
 - Players can also choose how many attempts they need to find the correct number.
 - The design can be super simple.
@@ -23,7 +24,7 @@ This is a solution to the [OpenCampus WebDev Program 2025's ](https://edu.openca
 
 ## Links
 
-- Solution URL:[https://github.com/vanhog/ocwebdev_ac_guessAnumber](https://github.com/vanhog/ocwebdev_ac_guessAnumber)
+- Solution URL:[https://github.com/vanhog/guess-a-number](https://github.com/vanhog/guess-a-number)
 - Live Site URL: [https://guess-a-number-training-project.netlify.app/](https://guess-a-number-training-project.netlify.app/)
 
 ## Built with

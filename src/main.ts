@@ -40,7 +40,6 @@ function getNumGuesses(): number {
 /**
  * Checks validity of a guess
  *
- *
  * @returns validity : boolean
  */
 function checkValidityGuess(): boolean {
