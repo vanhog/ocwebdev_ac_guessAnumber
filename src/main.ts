@@ -12,6 +12,12 @@ radios?.addEventListener('change', () => {
   gameRuns = getNumGuesses();
 });
 
+/**
+ * Evaluates the radio buttons for number guesses
+ * Eventually asks for a custom value
+ *
+ * @returns Number of guesses for the run : number
+ */
 function getNumGuesses(): number {
   const checkedRadio = document.querySelector<HTMLInputElement>(
     'input[name="guesses"]:checked',
@@ -31,6 +37,12 @@ function getNumGuesses(): number {
   return attempts;
 }
 
+/**
+ * Checks validity of a guess
+ *
+ *
+ * @returns validity : boolean
+ */
 function checkValidityGuess(): boolean {
   let guess: number = Number(inputField.value);
   if (isNaN(guess) || guess > 100 || guess < 1) {
@@ -40,6 +52,10 @@ function checkValidityGuess(): boolean {
   }
 }
 
+/**
+ * Disables/Enables the radio buttons
+ *
+ */
 function toggleRadioStates() {
   const radios = document.querySelectorAll<HTMLInputElement>(
     'input[name="guesses"]',
@@ -48,6 +64,10 @@ function toggleRadioStates() {
   // -
 }
 
+/**
+ * Evaluates a guess against the winning number
+ *
+ */
 guessButton?.addEventListener('click', function () {
   if (!inGame) {
     toggleRadioStates();
